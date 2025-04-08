@@ -3,6 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import express, { type Request, type Response } from "express";
 import { config } from "./config/app.config";
+import connectDatabase from "./database/database";
 
 const app = express();
 // const BASE_PATH = config.BASE_PATH;
@@ -26,4 +27,5 @@ app.get("/", (req: Request, res: Response) => {
 
 app.listen(config.PORT, async () => {
   console.log(`Server litensing on port ${config.PORT} in ${config.NODE_ENV}`);
+  await connectDatabase()
 });
